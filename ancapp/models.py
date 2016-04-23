@@ -20,13 +20,15 @@ class FoodItem(db.Model):
     price = db.Column(db.Integer)
     description = db.Column(db.String)
     availability = db.Column(db.Boolean, default=True)
-    image = db.Column(db.String, unique=True)
+    image = db.Column(db.String)
+    veg=db.Column(db.String)
+    cat=db.Column(db.String)
     def __repr__(self):
         return "Id: {} {}".format(self.id,self.name)
      
 class Order(db.Model):
     __tablename__ = "order"
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=Truee)
     date_ordered = db.Column(db.DateTime, default=datetime.datetime.utcnow() \
                                           + datetime.timedelta(hours=5.5))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
