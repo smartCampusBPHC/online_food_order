@@ -7,9 +7,26 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     date_joined = db.Column(db.DateTime, default=datetime.datetime.utcnow() \
                                           + datetime.timedelta(hours=5.5))
+    google_id = db.Column(db.String)
     name = db.Column(db.String)
     phone = db.Column(db.BigInteger, unique=True)
     email = db.Column(db.String, unique=True)
+
+    @property
+    def is_authenticated(self):
+        return True
+
+    @property
+    def is_active(self):
+        return True
+
+    @property
+    def is_anonymous(self):
+        return False
+
+    def get_id(self):
+        return unicode(self.id)  # python 2
+        
     def __repr__(self):
         return "Id: {} {}".format(self.id,self.name)
 
