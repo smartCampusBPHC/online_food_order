@@ -1,5 +1,5 @@
 instance
 *.pyc
 config.*
-.idea
 bluemix.txt
+psycopg2-2.6.1.win-amd64-py2.7-pg9.4.4-release.exe
