@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>ANC:Food Items</title>
+<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="js/jquery.min.js"></script>
+
+<!-- Custom Theme files -->
+<!--theme style-->
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />	
+<!--//theme style-->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Wedding Store Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- start menu -->
+<script src="js/simpleCart.min.js"> </script>
+<!-- start menu -->
+<link href="css/memenu.css" rel="stylesheet" type="text/css" media="all" />
+<script type="text/javascript" src="js/memenu.js"></script>
+<script>$(document).ready(function(){$(".memenu").memenu();});</script>	
+<!-- /start menu -->
+<link href="css/form.css" rel="stylesheet" type="text/css" media="all" />
+<!-- the jScrollPane script -->
+<script type="text/javascript" src="js/jquery.jscrollpane.min.js"></script>
+		<script type="text/javascript" id="sourcecode">
+			$(function()
+			{
+				$('.scroll-pane').jScrollPane();
+			});
+		</script>
+<!-- //the jScrollPane script -->
+<style >
+	.fixed-nav-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  width: 100%;
+  background-color: orange;
+  color: blue;
+}
+
+</style>
+</head>
+
+<body> 
+<!--header-->
+
+<div class="header-top header-fixed fixed-nav-bar" >
+	 <div class="header-bottom" >			
+				<div class="logo">
+					<h1><a href="index.html" style="background-color: orange">SmartANC</a></h1>					
+				</div>
+			 <!---->		 
+			 <div class="top-nav">
+				<ul class="memenu skyblue" style="color:Brown">
+					<li class="grid" style="text-color:Brown ! Important;"><a href="#">Menu</a>
+						<div class="mepanel">
+							<div class="row">
+								<div class="col1 me-one">
+									<ul>
+										<li><a href="#chinese">Chinese</a></li>
+										<li><a href="#south_indian">South Indian</a></li>
+										<li><a href="#continental">Continental</a></li>
+										
+									</ul>
+								</div>
+							
+							</div>
+						</div>
+					</li>
+
+					<li class="grid"><a href="#">Cart </a>
+					
+					</li>
+
+					<li class="grid"><a href="typo.html">Account</a>
+						<div class="mepanel">
+							<div class="row">
+								<div class="col1 me-one">
+									<h4>Me</h4>
+									<ul>
+										<li><a href="product.html">Edit</a></li>
+										<li><a href="product.html">History</a></li>
+										<li><a href="product.html">Preferences</a></li>
+										<li><a href="product.html">Logout</a></li>
+									</ul>
+								</div>
+							
+							</div>
+						</div>
+
+					</li>
+					<li class="grid"><a href="contact.html">Contact</a></li>					
+				</ul>				
+			 </div>
+			 <!---->
+			 <div class="cart box_1">
+				 <a href="checkout.html">
+					<div class="total">
+					<span class="simpleCart_total"></span> (<span id="simpleCart_quantity" class="simpleCart_quantity"></span>)</div>
+					<span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+				</a>
+				<p><a href="javascript:;" class="simpleCart_empty">Empty Cart</a></p>
+			 	<div class="clearfix"> </div>
+			 </div>
+			 <div class="clearfix"> </div>
+			 <!---->			 
+			 </div>
+			<div class="clearfix"> </div>
+</div>
+
+<!--header//-->
+<div class="product-model">	 
+	<div class="container" style="padding-top:120px;">
+
+			<h1 style="font-family:Monospace; text-align:center; font-weight:bolder">Food Items</h1>			
+		 <div class="col-md-9 product-model-sec">
+		 	{% for i in params %}
+		 	<h2 id="chinese" style="font-family:Monospace; text-align:left; ; padding: 3em;">Chinese</h2>
+			{% if params[i][7]=="South Indian" %}
+			<tr>
+					  <a><div class="product-grid">
+						<div class="more-product"><span></span></div>						
+						<div class="product-img b-link-stripe b-animate-go  thickbox">
+							<img src="images/p1.jpg" class="img-responsive" alt="">
+							<div class="b-wrapper">
+							<h4 class="b-animate b-from-left  b-delay03">							
+							</h4>
+							</div>
+						</div></a>						
+						<div class="product-info simpleCart_shelfItem">
+							<div class="product-info-cust prt_name">
+								<h4 style="color:Brown">{{params[i][1]}}</h4>								
+								<span class="item_price">{{params[i][2]}}</span>
+								
+								<input type="text" class="item_quantity" value="0" />
+								<input type="button" class="item_add items" value="ADD">
+								<div class="clearfix"> </div>
+							</div>												
+							
+						</div>
+					</div>
+			{%endif%}		
+		{%endfor%}
+			</tr>
+		</div>
+				
+
+		<div class="col-md-9 product-model-sec" >
+		{% for i in params %}
+			
+
+			<hr id="south_indian" style="padding: 3em;">
+			<h2  style="font-family:Monospace; text-align:left;">South Indian</h2>
+			{% if params[i][7]=="South Indian" %}
+			<tr>	
+					<a><div class="product-grid">
+						<div class="more-product"><span></span></div>						
+						<div class="product-img b-link-stripe b-animate-go  thickbox">
+							<img src="images/p1.jpg" class="img-responsive" alt="">
+							<div class="b-wrapper">
+							<h4 class="b-animate b-from-left  b-delay03">							
+							</h4>
+							</div>
+						</div></a>						
+						<div class="product-info simpleCart_shelfItem">
+							<div class="product-info-cust prt_name">
+								<h4 style="color:Brown">{{params[i][1]}}</h4>								
+								<span class="item_price">{{params[i][2]}}</span>
+								
+								<input type="text" class="item_quantity" value="0" />
+								<input type="button" class="item_add items" value="ADD">
+								<div class="clearfix"> </div>
+							</div>												
+							
+						</div>
+					</div>
+			
+			{%endif%}
+		{%endfor%}
+			</tr>		
+					
+		</div>
+		{% for i in params %}	
+		<div class="col-md-9 product-model-sec">
+		<h2 id="continental" style="font-family:Monospace; text-align:left; padding:3em;">Continental</h2>			
+			{% if params[i][7]=="Continental" %}
+			<tr>		
+					<a><div class="product-grid">
+						<div class="more-product"><span></span></div>						
+						<div class="product-img b-link-stripe b-animate-go  thickbox">
+							<img src="images/p1.jpg" class="img-responsive" alt="">
+							<div class="b-wrapper">
+							<h4 class="b-animate b-from-left  b-delay03">							
+							</h4>
+							</div>
+						</div></a>						
+						<div class="product-info simpleCart_shelfItem">
+							<div class="product-info-cust prt_name">
+								<h4 style="color:Brown">{{params[i][1]}}</h4>								
+								<span class="item_price">{{params[i][2]}}</span>
+								
+								<input type="text" class="item_quantity" value="0" />
+								<input type="button" class="item_add items" value="ADD">
+								<div class="clearfix"> </div>
+							</div>												
+							
+						</div>
+					</div>
+			{%endif%}
+		{%endfor%}			
+					
+			<div class="rsidebar span_1_of_left">
+				 
+				 
+				  				 
+				   
+				 
+				   			   
+			 </div>				 
+	      </div>
+		</div>
+</div>
+
+<div>
+	<button class="btn btn-warning" style="width: 100%;height: 4em;text-align: center;font-style: Monospace;font-weight: bold; color:Black ">Submit</button>
+	<button class="btn btn-warning" style="width: 100%;height: 4em;text-align: center;font-style: helvetica;font-weight: bold; ">Checkout</button>
+
+</div>
+<!---->
+
+<!--lower ticker for copyright display-->
+<div class="copywrite">
+	 <div class="container">
+		 <div class="copy">
+			 <p>© 2016 SmartCampus Team. BITS Pilani Hyderabad Campus | All Rights Reserved</p>
+		 </div>
+		 <div class="social">							
+				<a href="#"><i class="facebook"></i></a>
+				<a href="#"><i class="twitter"></i></a>
+				<a href="#"><i class="dribble"></i></a>	
+				<a href="#"><i class="google"></i></a>	
+				<a href="#"><i class="youtube"></i></a>	
+		 </div>
+		 <div class="clearfix"></div>
+	 </div>
+</div>
+<!---->
+
+</body>
+</html>
