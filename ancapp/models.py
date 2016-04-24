@@ -40,6 +40,7 @@ class FoodItem(db.Model):
     image = db.Column(db.String, unique=True)
     category_id = db.Column(db.Integer, db.ForeignKey('category.id'))
     category = db.relationship('Category', backref='fooditems')
+    veg = db.Column(db.String)
     def __repr__(self):
         return "Id: {} {}".format(self.id,self.name)
 
@@ -52,7 +53,7 @@ class Category(db.Model):
      
 class Order(db.Model):
     __tablename__ = "order"
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=Truee)
     date_ordered = db.Column(db.DateTime, default=datetime.datetime.utcnow() \
                                           + datetime.timedelta(hours=5.5))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
