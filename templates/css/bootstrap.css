@@ -1028,7 +1028,11 @@ body {
 button,input,select,textarea {
 	font-family:inherit;
 	font-size:inherit;
-	line-height:inherit
+	line-height:inherit;
+    style="position:center; 
+    width:35%; 
+    height:80px;  
+    font-size: 25px;
 }
 a {
 	color:#337ab7;
@@ -4570,6 +4574,8 @@ a.list-group-item-success.active,a.list-group-item-success.active:focus,a.list-g
 }
 a.list-group-item-info,button.list-group-item-info {
 	color:#31708f
+        
+        
 }
 a.list-group-item-info .list-group-item-heading,button.list-group-item-info .list-group-item-heading {
 	color:inherit
