@@ -271,7 +271,7 @@ display:inline-block;
 }
 /*----*/
 .items{
-	padding:0.025em 0;
+	padding:4em 0;
 }
 .feature-grid img {
     width: 100%;
@@ -1326,7 +1326,7 @@ h3.ghj {
 	padding-bottom:30px;
 }
 .contact-form div{
-	padding:50px 0;
+	padding:5px 0;
 }
 .contact-form span{
 	display:block;
