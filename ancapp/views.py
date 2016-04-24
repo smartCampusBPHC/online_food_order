@@ -35,17 +35,11 @@ def index():
     else:
         return "Log in"
 
-@app.route('/user_info')
-@login_required
-def user_info():
-    return "Welcome " + current_user.name
-
-
 @app.route('/login')
 def login():
     if not current_user.is_authenticated:
         return google.authorize(callback=url_for('authorized', _external=True))
-    redirect(url_for('index'))
+    return redirect(url_for('index'))
 
 @app.route('/logout')
 def logout():
@@ -72,9 +66,9 @@ def authorized():
         db.session.add(user)
         db.session.commit()
     login_user(user)
-    return jsonify({"data": me.data})
-
+    return redirect(url_for('index'))
 
 @google.tokengetter
 def get_google_oauth_token():
     return session.get('google_token')
+

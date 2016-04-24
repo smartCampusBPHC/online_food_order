@@ -38,6 +38,15 @@ class FoodItem(db.Model):
     description = db.Column(db.String)
     availability = db.Column(db.Boolean, default=True)
     image = db.Column(db.String, unique=True)
+    category_id = db.Column(db.Integer, db.ForeignKey('category.id'))
+    category = db.relationship('Category', backref='fooditems')
+    def __repr__(self):
+        return "Id: {} {}".format(self.id,self.name)
+
+class Category(db.Model):
+    __tablename__ = "category"
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    name= db.Column(db.String)
     def __repr__(self):
         return "Id: {} {}".format(self.id,self.name)
      
@@ -49,6 +58,7 @@ class Order(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     user = db.relationship('User', backref='orders')
     amount = db.Column(db.Integer)
+    status = db.Column(db.Boolean, default=False)
     def __repr__(self):
         return "Id: {} {} Amt: Rs.{}".format(self.id,self.user.name,self.amount)
     
