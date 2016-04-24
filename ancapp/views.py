@@ -1,7 +1,7 @@
 from ancapp import app, db
 from flask import Flask, render_template, url_for,jsonify, request, redirect, session, g
 from flask_oauthlib.client import OAuth
-from .models import User
+from .models import User,Category, FoodItem, OrderItem, Order
 from flask.ext.login import LoginManager
 from flask.ext.login import login_user, logout_user, current_user, login_required
 
@@ -84,6 +84,41 @@ def authorized():
 @google.tokengetter
 def get_google_oauth_token():
     return session.get('google_token')
+
+
+@app.route('/product',methods=['GET','POST'])
+@login_required
+def main():
+    if request.method == 'GET':
+        categories = Category.query.all() 
+        return render_template('product.html',categories = categories)
+
+@app.route('/checkout',methods=['GET','POST'])
+@login_required
+def checkout():
+    if request.method=='POST':
+        order = Order()
+        order.user = current_user
+        db.session.add(order)
+        quantity = {}
+        foodItems = FoodItem.query.all()
+        total = 0
+        for food in foodItems:
+            qty = int(request.form[str(food.id)])
+            if  qty > 0:
+                quantity[food] = (qty , qty * food.price)
+                total += quantity[food][1]
+                orderitem =  OrderItem()
+                orderitem.order = order
+                orderitem.fooditem = food
+                orderitem.quantity = qty
+                db.session.add(orderitem)
+
+        order.amount = total
+        db.session.commit()
+
+        return render_template('checkout_edited.html',quantity = quantity, total=total)
+
 
 
 ##@app.route("/main")

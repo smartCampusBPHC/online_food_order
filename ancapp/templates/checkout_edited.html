@@ -8,13 +8,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <html>
 <head>
 <title>ANC:Food Items</title>
-<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<link href="static/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="js/jquery.min.js"></script>
+<script src="static/js/jquery.min.js"></script>
 
 <!-- Custom Theme files -->
 <!--theme style-->
-<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />	
+<link href="static/css/style.css" rel="stylesheet" type="text/css" media="all" />	
 <!--//theme style-->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -22,15 +22,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- start menu -->
-<script src="js/simpleCart.min.js"> </script>
+<script src="static/js/simpleCart.min.js"> </script>
 <!-- start menu -->
-<link href="css/memenu.css" rel="stylesheet" type="text/css" media="all" />
+<link href="static/css/memenu.css" rel="stylesheet" type="text/css" media="all" />
 <script type="text/javascript" src="js/memenu.js"></script>
 <script>$(document).ready(function(){$(".memenu").memenu();});</script>	
 <!-- /start menu -->
-<link href="css/form.css" rel="stylesheet" type="text/css" media="all" />
+<link href="static/css/form.css" rel="stylesheet" type="text/css" media="all" />
 <!-- the jScrollPane script -->
-<script type="text/javascript" src="js/jquery.jscrollpane.min.js"></script>
+<script type="text/javascript" src="static/js/jquery.jscrollpane.min.js"></script>
 		<script type="text/javascript" id="sourcecode">
 			$(function()
 			{
@@ -45,7 +45,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
   left: 0;
   z-index: 9999;
   width: 100%;
-  background-color: orange;
+  background-color: white;
   color: blue;
 }
 
@@ -55,18 +55,53 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
 <!-- header -->
-<div class="header-top">
-	 <div class="header-bottom">			
+<div class="header-top header-fixed fixed-nav-bar" >
+	 <div class="header-bottom" >			
 				<div class="logo">
-					<h1><a href="index.html">Lighting</a></h1>					
+					<h1><a href="index.html" style="background-color: firebrick">SmartANC</a></h1>					
 				</div>
 			 <!---->		 
 			 <div class="top-nav">
-				<ul class="memenu skyblue"><li><a href="product.html">Home</a></li>
+				<ul class="memenu skyblue" style="color:Brown">
+					<li class="grid" style="text-color:Brown ! Important;"><a href="#">Menu</a>
+						<div class="mepanel">
+							<div class="row">
+								<div class="col1 me-one">
+									<ul>
+										<li><a href="#chinese">Chinese</a></li>
+										<li><a href="#south_indian">South Indian</a></li>
+										<li><a href="#continental">Continental</a></li>
+										
+									</ul>
+								</div>
+							
+							</div>
+						</div>
+					</li>
+
+					<li class="grid"><a href="#">Cart </a>
 					
-					
-				</ul>
-				<div class="clearfix"> </div>
+					</li>
+
+					<li class="grid"><a href="typo.html">Account</a>
+						<div class="mepanel">
+							<div class="row">
+								<div class="col1 me-one">
+									<h4>Me</h4>
+									<ul>
+										<li><a href="product.html">Edit</a></li>
+										<li><a href="product.html">History</a></li>
+										<li><a href="product.html">Preferences</a></li>
+										<li><a href="product.html">Logout</a></li>
+									</ul>
+								</div>
+							
+							</div>
+						</div>
+
+					</li>
+					<li class="grid"><a href="contact.html">Contact</a></li>					
+				</ul>				
 			 </div>
 			 <!---->
 			 <div class="cart box_1">
@@ -84,6 +119,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="clearfix"> </div>
 </div>
 <!-- check out -->
+    <br>
+    <br>
+    <br>
+    <br>
+
+    
+    
 <div class="container">
 	<div class="check-sec">	 
 		<div class="col-md-3 cart-total">
@@ -97,48 +139,52 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="clearfix"></div>				 
 			</div>	
 			<ul class="total_price">
+               <li class="last_price"><h5> {{params[i][0]}}  {{params[i][2]}} x {{params[i][2]}} = {{params[i][3]}}
+               </h5></li>
+                <br>
 			   <li class="last_price"> <h4>TOTAL</h4></li>	
+<<<<<<< HEAD:ancapp/templates/checkout_edited.html
+			   <li class="last_price"><span> {{total}} </span></li>			   
+||||||| merged common ancestors
 			   <li class="last_price"><span>{{params1}}</span></li>			   
+=======
+			   <li class="last_price"><span>{{params1}}</span></li>		
+            
+>>>>>>> 2c5961f8b9e29c5dafad4285b48f8d351df2d203:templates/checkout_edited.html
 			</ul> 
 			<div class="clearfix"></div>
 			<div class="clearfix"></div>
 			<a class="order" href="#">Place Order</a>
 			
 		</div>
-		<p style=" font-family:Gothic; font-weight:bolder; ">Order Id: {{% params[i][5]%}} </p>
-		<p style=" font-family:Gothic; font-weight:bolder; ">Student Name: {{% params[i][6] %}} </p>
+
 		<div class="col-md-9 cart-items" style="padding:15px;">
 			<h1>Cart</h1>
 			
-				{% for i in params %}
-				{% if params[i][1]>0 %}
+				{% for food in quantity.keys() %}
 				<tr>		
-				<script>$(document).ready(function(c) {
+<!-- 				<script>$(document).ready(function(c) {
 					$('.close1').on('click', function(c){
 						$('.cart-header').fadeOut('slow', function(c){
 							$('.cart-header').remove();
 						});
 						});	  
 					});
-			   </script>
+			   </script> -->
 			<div class="cart-header">
 				<div class="close1"> </div>
 				<div class="cart-sec simpleCart_shelfItem">
-						<div class="cart-item cyc">
+					<!-- 	<div class="cart-item cyc">
 							<img src="images/p4.jpg" class="img-responsive" alt=""/>
-						</div>
+						</div> -->
 					   <div class="cart-item-info">
-						    <h3><a href="single.html">
-
-						    	{{params[i][0]}}
-
-						    </a><span>{{params[i][2]}}</span></h3>
+						    <h3> {{food.name}}  </h3>
 							<ul class="qty">
 								<li></li>
-								<li><p>Qty : {{params[i][1]}}</p></li>
+								<li><p> Qty : {{quantity[food][0]}} </p></li>
 							</ul>
 							<div class="delivery">
-								 <p>Total Cost of Item :{{params[i][3]}}</p>
+								 <p>Total Cost of Item : {{quantity[food][1]}} </p>
 
 								 <!--<span>Delivered in 2-3 bussiness days</span>-->
 								 <div class="clearfix"></div>
@@ -149,8 +195,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				  </div>
 			 </div>
 			</tr>
-			{{% endif %}}
-			{{% endfor %}}
+			
+			{% endfor %}
 			
 			
 			
@@ -159,8 +205,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</div>
 </div>
 <!-- //check out -->
-<!---->
 
-<!---->
 </body>
 </html>
