@@ -54,7 +54,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="header-top header-fixed fixed-nav-bar" >
 	 <div class="header-bottom" >			
 				<div class="logo">
-					<h1><a href="index.html" style="background-color: orange">SmartANC</a></h1>					
+					<h1><a href="index.html" style="background-color:firebrick">SmartANC</a></h1>					
 				</div>
 			 <!---->		 
 			 <div class="top-nav">
@@ -130,18 +130,27 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<div class="more-product"><span> </span></div>						
 						<div class="product-img b-link-stripe b-animate-go  thickbox">
 							<img src="static/images/p1.jpg" class="img-responsive" alt="">
-							<div class="b-wrapper">
-							<h4 class="b-animate b-from-left  b-delay03">							
-							<button><span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span>Quick View</button>
-							</h4>
-							</div>
 						</div>
 						<div class="product-info simpleCart_shelfItem">
 							<div class="product-info-cust prt_name">
 								<h4>{{food.name}}</h4>								
 								<span class="item_price">{{food.price}}</span>
-								<input name="{{food.id}}" type="number" class="item_quantity" min=0 value=0 />
-								<input type="button" class="item_add items" value="ADD">
+								<p>
+									<input name="{{food.id}}" type="number" class="item_quantity" min=0 value=0 />
+									<p style="color:black; float:right;"> <b>No. of parcels</b>
+									<select>
+									<script>
+									<!--	
+											var x = document.getElementsByName("{{food.id}}")
+											for (var i=0;i<=x;i++) {
+												document.write("<option name=\"{{food.name}}\" value=" + i + " >" + i +" </option>");
+											}
+											
+									-->
+									</script>
+									</select>
+									</p>
+								</p>
 								<div class="clearfix"> </div>
 							</div>												
 							
