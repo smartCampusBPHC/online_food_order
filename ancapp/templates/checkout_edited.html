@@ -145,9 +145,25 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</ul> 
 			<div class="clearfix"></div>
 			<div class="clearfix"></div>
-			<a class="order" href="#">Place Order</a>
+			<form action="/process_order" method="POST">
+<!-- Note that the amount is in paise = 50 INR -->
+<script
+    src="https://checkout.razorpay.com/v1/checkout.js"
+    data-key="rzp_test_wgHMJLzmklO8rQ"
+    data-amount="{{total * 100}}"
+    data-buttontext="Pay with Razorpay"
+    data-name="Mess 1 ANC"
+    data-description="Purchase Description"
+    data-image="https://your-awesome-site.com/your_logo.jpg"
+    data-prefill.name="{{current_user.name}}"
+    data-prefill.email="{{current_user.email}}"
+    data-theme.color="#F37254"
+></script>
+<input type="hidden" value="{{order.id}}" name="order_id">
+</form>
 			
 		</div>
+		
 
 		<div class="col-md-9 cart-items" style="padding:15px;">
 			<h1>Cart</h1>

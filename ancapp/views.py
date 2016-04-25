@@ -4,6 +4,8 @@ from flask_oauthlib.client import OAuth
 from .models import User,Category, FoodItem, OrderItem, Order
 from flask.ext.login import LoginManager
 from flask.ext.login import login_user, logout_user, current_user, login_required
+import razorpay
+import json
 
 ###defining the static variables 
 ##n=200
@@ -21,7 +23,7 @@ from flask.ext.login import login_user, logout_user, current_user, login_require
 lm =  LoginManager()
 lm.init_app(app)
 lm.login_view = 'login'
-
+razor = razorpay.Client(auth=(app.config.get('RAZOR_KEY'), app.config.get('RAZOR_SECRET')))
 oauth = OAuth(app)
 google = oauth.remote_app(
     'google',
@@ -43,18 +45,16 @@ def load_user(user_id):
 
 @app.route('/')
 def index():
-    if current_user is not None and current_user.is_authenticated:
-        return "Logged in as: " + current_user.name
-    else:
-        return "Log in"
-
+    return render_template('index.html')
+    
 @app.route('/login')
 def login():
-    if not current_user.is_authenticated:
+    if current_user is None or not current_user.is_authenticated:
         return google.authorize(callback=url_for('authorized', _external=True))
-    return redirect(url_for('index'))
+    return redirect(url_for('main'))
 
 @app.route('/logout')
+@login_required
 def logout():
     logout_user()
     return redirect(url_for('index'))
@@ -79,7 +79,7 @@ def authorized():
         db.session.add(user)
         db.session.commit()
     login_user(user)
-    return redirect(url_for('index'))
+    return redirect(url_for('main'))
 
 @google.tokengetter
 def get_google_oauth_token():
@@ -94,9 +94,9 @@ def main():
         return render_template('product.html',categories = categories)
 
 @app.route('/checkout',methods=['GET','POST'])
-@login_required
 def checkout():
     if request.method=='POST':
+        #current_user =  User.query.get(1)
         order = Order()
         order.user = current_user
         db.session.add(order)
@@ -116,10 +116,24 @@ def checkout():
 
         order.amount = total
         db.session.commit()
+        
+        return render_template('checkout_edited.html',quantity = quantity, total=total, current_user = current_user, order = order)
 
-        return render_template('checkout_edited.html',quantity = quantity, total=total)
-
-
+@app.route('/process_order', methods=['POST'])
+@login_required
+def process_order():
+    if request.method == 'POST':
+        razorId = request.form['razorpay_payment_id']
+        orderId = int(request.form['order_id'])
+        order = Order.query.get(orderId)
+        razorJSON = razor.payment.fetch(razorId)
+        print razorJSON
+        if razorJSON['amount'] == order.amount *100:
+            return "Your payment is successful"
+        else:
+            return "Payment not succesful"
+    
+        
 
 ##@app.route("/main")
 ##def main():
