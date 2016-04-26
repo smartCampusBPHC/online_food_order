@@ -86,17 +86,15 @@ def get_google_oauth_token():
     return session.get('google_token')
 
 
-@app.route('/product',methods=['GET','POST'])
-@login_required
+@app.route('/product', methods=['GET','POST'])
+# @login_required
 def main():
     if request.method == 'GET':
         categories = Category.query.all() 
         return render_template('product.html',categories = categories)
 
-@app.route('/checkout',methods=['GET','POST'])
-def checkout():
     if request.method=='POST':
-        #current_user =  User.query.get(1)
+        current_user =  User.query.get(1)
         order = Order()
         order.user = current_user
         db.session.add(order)
@@ -116,11 +114,19 @@ def checkout():
 
         order.amount = total
         db.session.commit()
-        
-        return render_template('checkout_edited.html',quantity = quantity, total=total, current_user = current_user, order = order)
+        return redirect( url_for('checkout', orderId = order.id) )
+
+
+@app.route('/checkout/<int:orderId>/',methods=['GET','POST'])
+# @login_required
+def checkout(orderId):
+    if request.method=='GET':
+        order = Order.query.get(orderId)
+        current_user =  User.query.get(1)
+        return render_template('checkout_edited.html',current_user = current_user, order = order)
 
 @app.route('/process_order', methods=['POST'])
-@login_required
+# @login_required
 def process_order():
     if request.method == 'POST':
         razorId = request.form['razorpay_payment_id']

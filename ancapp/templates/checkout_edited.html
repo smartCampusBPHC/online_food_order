@@ -8,13 +8,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <html>
 <head>
 <title>ANC:Food Items</title>
-<link href="static/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<link href="{{url_for('static',filename = 'css/bootstrap.css')}}" rel="stylesheet" type="text/css" media="all" />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="static/js/jquery.min.js"></script>
+<script src="{{url_for('static',filename = 'js/jquery.min.js')}}"></script>
 
 <!-- Custom Theme files -->
 <!--theme style-->
-<link href="static/css/style.css" rel="stylesheet" type="text/css" media="all" />	
+<link href="{{url_for('static',filename = 'css/style.css')}}" rel="stylesheet" type="text/css" media="all" />	
 <!--//theme style-->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -22,15 +22,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- start menu -->
-<script src="static/js/simpleCart.min.js"> </script>
+<script src="{{url_for('static',filename = 'js/simpleCart.min.js')}}"> </script>
 <!-- start menu -->
-<link href="static/css/memenu.css" rel="stylesheet" type="text/css" media="all" />
+<link href="{{url_for('static',filename = 'css/memenu.css')}}" rel="stylesheet" type="text/css" media="all" />
 <script type="text/javascript" src="js/memenu.js"></script>
 <script>$(document).ready(function(){$(".memenu").memenu();});</script>	
 <!-- /start menu -->
-<link href="static/css/form.css" rel="stylesheet" type="text/css" media="all" />
+<link href="{{url_for('static',filename = 'css/form.css')}}" rel="stylesheet" type="text/css" media="all" />
 <!-- the jScrollPane script -->
-<script type="text/javascript" src="static/js/jquery.jscrollpane.min.js"></script>
+<script type="text/javascript" src="{{url_for('static',filename = 'js/jquery.jscrollpane.min.js')}}"></script>
 		<script type="text/javascript" id="sourcecode">
 			$(function()
 			{
@@ -141,7 +141,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<ul class="total_price">
                 <br>
 			   <li class="last_price"> <h4>TOTAL</h4></li>	
-			   <li class="last_price"><span> {{total}} </span></li>			   
+			   <li class="last_price"><span> {{order.amount}} </span></li>			   
 			</ul> 
 			<div class="clearfix"></div>
 			<div class="clearfix"></div>
@@ -150,7 +150,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script
     src="https://checkout.razorpay.com/v1/checkout.js"
     data-key="rzp_test_wgHMJLzmklO8rQ"
-    data-amount="{{total * 100}}"
+    data-amount="{{order.amount * 100}}"
     data-buttontext="Pay with Razorpay"
     data-name="Mess 1 ANC"
     data-description="Purchase Description"
@@ -168,7 +168,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="col-md-9 cart-items" style="padding:15px;">
 			<h1>Cart</h1>
 			
-				{% for food in quantity.keys() %}
+				{% for orderItem in order.orderitems %}
 				<tr>		
 <!-- 				<script>$(document).ready(function(c) {
 					$('.close1').on('click', function(c){
@@ -179,19 +179,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					});
 			   </script> -->
 			<div class="cart-header">
-				<div class="close1"> </div>
+				<!-- <div class="close1"> </div> -->
 				<div class="cart-sec simpleCart_shelfItem">
 					<!-- 	<div class="cart-item cyc">
 							<img src="images/p4.jpg" class="img-responsive" alt=""/>
 						</div> -->
 					   <div class="cart-item-info">
-						    <h3> {{food.name}}  </h3>
+						    <h3> {{orderItem.fooditem.name}}  </h3>
 							<ul class="qty">
 								<li></li>
-								<li><p> Qty : {{quantity[food][0]}} </p></li>
+								<li><p> Qty : {{orderItem.quantity}} </p></li>
 							</ul>
 							<div class="delivery">
-								 <p>Total Cost of Item : {{quantity[food][1]}} </p>
+								 <p>Total Cost of Item : {{orderItem.quantity * orderItem.fooditem.price}} </p>
 
 								 <!--<span>Delivered in 2-3 bussiness days</span>-->
 								 <div class="clearfix"></div>
